@@ -140,8 +140,9 @@
                     {% for profile in profiles %}
                     <tr>
                         <td><a class="pointer" href="/tweets/{{profile.name}}"> {{ profile.name }} </a>
-                          <div id="myDiv" style="display:none;" class="answer_list" >HELLO
-                            <input type="input" name="answer" value="{{profile.name}}"/>
+                          <div id="myDiv" style="display:none;" class="answer_list" >
+                            <input type="input" name="answer" id="profid" value="{{profile.name}}"/>
+                            <input id="clickMe" type="button" value="clickme" onclick="doFunction();" />
                           </div>
                           
                       </td>
@@ -180,8 +181,8 @@
       }
     
       function editProfile(profileId, profileName) {
-        console.log(profileId, profileName)
-        var profilename = prompt("Enter the new profile name", profileName);
+        
+        var profilename = document.getElementById("profid").value;
         
         if (profilename) {
           $.ajax({
