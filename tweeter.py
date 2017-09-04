@@ -447,7 +447,7 @@ def get_tweet_score(text, score):
 						
 						tweet_cve_score = tweet_cve_score.replace('\r', '').replace('\n', '').replace(' ', '')
 				
-				tweet_score = '{} [{}]'.format(get_cvss_rating(tweet_cve_score))
+				tweet_score = '{} [{}]'.format(weet_cve_score, get_cvss_rating(tweet_cve_score))
 		
 		else:
 				if float(score) >= -0.05:
