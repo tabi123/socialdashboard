@@ -135,8 +135,6 @@
               </thead>
               <tbody>
                   {% for y in tweets %}
-                {% if y.cve == "": y.score = y.score.split(' ', 1)[1]  %}
-                {% endif %}
                   <tr>
                       <td>{{ y.tweet }}</td>            
                       <td>{{ y.date }}</td>
