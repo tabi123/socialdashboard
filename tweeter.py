@@ -58,7 +58,7 @@ class TwitterClient(object):
 						if score <= -0.05:
 								print("critical")
 						elif score in range(-0.005, -0.1):
-								print("High11")
+								print("High")
 		
 				return (cve_vuln)
 		
@@ -419,7 +419,7 @@ def get_cvss_rating(cve_score):
 				elif (4.0 <= cve_score <= 6.9):
 						cve_rating = 'medium'
 				elif (7.0 <= cve_score <= 8.9):
-						cve_rating = 'high22'
+						cve_rating = 'high'
 				elif (9.0 <= cve_score <= 10.0):
 						cve_rating = 'critical'
 		except:
