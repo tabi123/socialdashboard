@@ -133,7 +133,11 @@
                 <tbody>
                     {% for profile in profiles %}
                     <tr>
-                        <td><a class="pointer" href="/tweets/{{profile.name}}"> {{ profile.name }} </a></td>
+                        <td><a class="pointer" href="/tweets/{{profile.name}}"> {{ profile.name }} </a>
+                          <input type="hidden" name="test" value="/tweets/{{profile.name}}">
+                          <input name="test" value="/tweets/{{profile.name}}">
+                      </td>
+                      
                         <td>
                             <a class="pointer" title="Edit profile" onclick="editProfile({{ profile.id }}, '{{ profile.name }}')"><span class="glyphicon glyphicon-pencil"></span></a> &emsp;
                             <a class="pointer" title="Delete profile" onclick="deleteProfile({{ profile.id }})"><span class="glyphicon glyphicon-trash"></span></a>
