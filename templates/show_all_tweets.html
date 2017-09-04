@@ -134,14 +134,12 @@
                   </tr>
               </thead>
               <tbody>
-                {% for vuln in vulns %}
-                {% set mylist = vuln.name.split(',') %}
-                {% if vuln.source == 'securityfocus' or vuln.source == 'fulldisclosure'  %} 
+                  {% for y in tweets %}
                   <tr>
-                      <td>{{ vuln.tweet }}</td>            
-                      <td>{{ vuln.date }}</td>
-                      <td>{{ vuln.cve }}</td>
-                      <td>[{{ vuln.score }}]</td>
+                      <td>{{ y.tweet }}</td>            
+                      <td>{{ y.date }}</td>
+                      <td>{{ y.cve }}</td>
+                      <td>{{ y.score }}</td>
                   <td><a href="{{ y.url }}"> {{ y.url }} </a></td>
                   </tr>
                   {% endfor %} 
