@@ -242,6 +242,7 @@ class TwitterClient(object):
 api = TwitterClient()
 
 def fetchtweets(profile_name='Inj3ct0r'):
+	        print "we are in fetchtweets"
 		# # print(api, len(api))
 		# # print(api.created_at)
 		# # creating and initializing output xlsx file containg all formatted tweets and stored in current directory.
