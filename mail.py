@@ -86,7 +86,7 @@ def check_tweets_mail():
 	return mail_text
 
 def mail():
-	mail_text = check_vulns_mail()[:2] + check_tweets_mail()[:2]
+	mail_text = check_vulns_mail()[:5] + check_tweets_mail()[:5]
 	if mail_text != []:
 
 		fromaddr = "socialdashboard2017@gmail.com"
