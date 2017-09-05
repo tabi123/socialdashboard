@@ -53,38 +53,6 @@
 }
     </script>
     
-    
-    
-    
-    <style type="text/css" media="screen">
-#horizontalmenu ul {
-padding:1; margin:1; list-style:none;
-}
-#horizontalmenu li {
-float:left; position:relative; padding-right:100; display:block;
-border:4px solid #CC55FF; 
-border-style:inset;
-}
-#horizontalmenu li ul {
-    display:none;
-position:absolute;
-}
-#horizontalmenu li:hover ul{
-    display:block;
-    background:red;
-height:auto; width:8em; 
-}
-#horizontalmenu li ul li{
-    clear:both;
-border-style:none;}
-</style>
-
-
-    
-    
-    
-    
-    
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -114,9 +82,6 @@ border-style:none;}
                 <li><a href="{{ url_for('show_all') }}">Blogs and Forums</a></li>
                 <li><a href="{{ url_for('show_all_tweets') }}">Social Networks</a>
                 </li>
-                
-                <a href="{{ url_for('show_all_tweets') }}">Social Networks</a>
-                <ul> <li> class="active"><a href="#">Profiles</a></li> </ul>
         
 
                 <li><a style="color: maroon;" href="{{ url_for('logout') }}">Logout</a></li>
