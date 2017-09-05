@@ -77,9 +77,11 @@
             
             <div class="navbar-custom-menu">
               <ul class="nav navbar-nav pull-right">
-                <li class="active"><a href="#">Profiles</a></li>    
+                   
                 <li><a href="{{ url_for('show_all') }}">Blogs and Forums</a></li>
-                <li><a href="{{ url_for('show_all_tweets') }}">Social Networks</a></li>
+                <li><a href="{{ url_for('show_all_tweets') }}">Social Networks</a>
+                  <ul><li class="active"><a href="#">Profiles</a></li> </ul>
+                </li>
                 <li><a style="color: maroon;" href="{{ url_for('logout') }}">Logout</a></li>
               </ul>
             </div>
