@@ -135,8 +135,8 @@
               </thead>
               <tbody>
                   {% for y in tweets %}
-                {% if y.cve == '': y.score = y.score.split(' ', 1)[1]  %}
-                 {% endif %}
+                {% if (y.cve == '') %}
+                 
                   <tr>
                       <td>{{ y.tweet }}</td>            
                       <td>{{ y.date }}</td>
@@ -144,6 +144,7 @@
                       <td>{{ y.score }}</td>
                   <td><a href="{{ y.url }}"> {{ y.url }} </a></td>
                   </tr>
+                {% endif %}
                   {% endfor %} 
       
                   </tr>
