@@ -116,6 +116,9 @@
           <div class="login-box">
               <div class="login-box-body">
                 <p class="login-box-msg">Add New Profile</p>
+                {% if profile_name_invalid %}
+                  <p>Invalid twitter username</p>
+                {% endif %}
                 <form action="/profiles" method="POST">
                   <div class="form-group has-feedback">
                     <input type="text" class="form-control" placeholder="Profile Name" name="profile_name" value="" required>

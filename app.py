@@ -16,7 +16,7 @@ from models_tweet import tweets as Tweets
 from models_profiles import profiles
 
 # db.drop_all()
-from tweeter import getNegativeTweets, get_cve, get_cvss_rating, get_tweet_score
+from tweeter import getNegativeTweets, get_cve, get_cvss_rating, get_tweet_score, twitter_user_exist
 db.create_all()
 
 def ssl_required(fn):
@@ -180,14 +180,18 @@ def show_all_tweets(profile_name):
 def show_profiles():
 	if request.method == 'GET':
 		saved_profiles = db.session.query(profiles).all()
-		return render_template('profiles.html', profiles=saved_profiles)
+		profile_name_invalid = session["profile_name_invalid"] if "profile_name_invalid" in session else False
+		return render_template('profiles.html', profiles=saved_profiles, profile_name_invalid=profile_name_invalid)
 	
 	if request.method == 'POST':
 		request_data = request.data or request.form
 		profile_name = request_data.get('profile_name')
-		profile = profiles(name=profile_name)
-		db.session.add(profile)
-		db.session.commit()
+		session["profile_name_invalid"] = True
+		if twitter_user_exist(profile_name):
+			session["profile_name_invalid"] = False
+			profile = profiles(name=profile_name)
+			db.session.add(profile)
+			db.session.commit()
 		return redirect(url_for('show_profiles'))
 
 @app.route('/profiles/<int:profile_id>', methods=['PUT', 'DELETE'])

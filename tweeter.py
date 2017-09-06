@@ -9,6 +9,7 @@ from tweepy import OAuthHandler
 from textblob import TextBlob
 from dotenv import load_dotenv, find_dotenv
 from spider import *
+import urllib.request, json
 
 if not os.getenv('HEROKU'):
 		load_dotenv(find_dotenv())
@@ -457,3 +458,10 @@ def get_tweet_score(text, score):
 						tweet_score = str(score) + " [high] SS"
 
 		return tweet_score
+
+
+def twitter_user_exist(profile_name):
+	with urllib.request.urlopen("https://twitter.com/users/username_available?username=" + profile_name) as url:
+		data = json.loads(url.read().decode())
+		return data["reason"] == "taken" or data["reason"] == "your_name"
+
