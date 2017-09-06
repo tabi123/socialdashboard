@@ -461,7 +461,16 @@ def get_tweet_score(text, score):
 
 
 def twitter_user_exist(profile_name):
-	with urllib.request.urlopen("https://twitter.com/users/username_available?username=" + profile_name) as url:
-		data = json.loads(url.read().decode())
-		return data["reason"] == "taken" or data["reason"] == "your_name"
+	try:
+		conn = urllib.request.urlopen("https://twitter.com/" + profile_name)
+		return True
+	except urllib.error.HTTPError as e:
+		return False
+		# data = json.loads(url.read().decode())
+		#return url.getcode() == 200
+		# return data["reason"] == "taken" or data["reason"] == "your_name"
+
+		
+
+		
 
