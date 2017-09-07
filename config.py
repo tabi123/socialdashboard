@@ -1,4 +1,3 @@
-  import os
 
 class BaseConfig(object):
   DEBUG = False
