@@ -242,7 +242,8 @@ class TwitterClient(object):
 # # creating object of TwitterClient Class
 api = TwitterClient()
 
-def fetchtweets(profile_name):
+#def fetchtweets(profile_name):
+def fetchtweets(profile_name='Inj3ct0r'):	        
 	        #print ("we are in fetchtweets")
 		# # print(api, len(api))
 		# # print(api.created_at)
