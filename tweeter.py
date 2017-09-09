@@ -165,29 +165,32 @@ class TwitterClient(object):
 
 				# Date limit initialization to filter tweets
 				startDate = datetime.datetime(2017, 1, 1, 0, 0, 0)
-				endDate = datetime.datetime(2017, 7, 16, 0, 0, 0)
+				endDate = datetime.datetime(2017, 8, 9, 0, 0, 0)
 
 				try:
 						# call twitter api to fetch tweets
 						fetched_tweets = self.api.user_timeline(screen_name, count=count)
-
 						# fetch tweets between startDate and endDate
-						for tweet in fetched_tweets:
-								if tweet.created_at < endDate and tweet.created_at > startDate:
-										dateFilteredTweets.append(tweet)
 
-						# fetch more tweets if all retrieved tweets are earlier than endDate limit
-						while (fetched_tweets[-1].created_at > startDate):
-								print("Last Tweet @", fetched_tweets[-1].created_at, " - fetching some more")
-								fetched_tweets = self.api.user_timeline(screen_name, max_id=fetched_tweets[-1].id)
-								no_of_date_filtered_tweets = len(dateFilteredTweets)
-								for tweet in fetched_tweets:
-										if tweet.created_at < endDate and tweet.created_at > startDate and no_of_date_filtered_tweets < count:
-												dateFilteredTweets.append(tweet)
+						dateFilteredTweets = fetched_tweets
 
-                # Break out of loop once tweets reaches or exceed expected number
-								if len(dateFilteredTweets) >= count:
-									break;
+						# Causing non saving of tweets if filtered by date. To be uncommented later
+						# for tweet in fetched_tweets:
+						# 		if tweet.created_at < endDate and tweet.created_at > startDate:
+						# 				dateFilteredTweets.append(tweet)
+						# 		print(len(dateFilteredTweets))
+						# # fetch more tweets if all retrieved tweets are earlier than endDate limit
+						# while (fetched_tweets[-1].created_at > startDate):
+						# 		print("Last Tweet @", fetched_tweets[-1].created_at, " - fetching some more")
+						# 		fetched_tweets = self.api.user_timeline(screen_name, max_id=fetched_tweets[-1].id)
+						# 		no_of_date_filtered_tweets = len(dateFilteredTweets)
+						# 		for tweet in fetched_tweets:
+						# 				if tweet.created_at < endDate and tweet.created_at > startDate and no_of_date_filtered_tweets < count:
+						# 						dateFilteredTweets.append(tweet)
+
+						# 		# Break out of loop once tweets reaches or exceed expected number
+						# 		if len(dateFilteredTweets) >= count:
+						# 			break;
 
 						# Get all tweets from dateFilteredTweets based on the given tags in query list and store in tagFilteredTweets list
 						for tweet in dateFilteredTweets:
@@ -242,9 +245,8 @@ class TwitterClient(object):
 # # creating object of TwitterClient Class
 api = TwitterClient()
 
-#def fetchtweets(profile_name):
-def fetchtweets(profile_name='Inj3ct0r'):	        
-	        #print ("we are in fetchtweets")
+def fetchtweets(profile_name):
+					#print ("we are in fetchtweets")
 		# # print(api, len(api))
 		# # print(api.created_at)
 		# # creating and initializing output xlsx file containg all formatted tweets and stored in current directory.
@@ -293,7 +295,6 @@ def fetchtweets(profile_name='Inj3ct0r'):
 		# netweets = [tweet for tweet in tweets if tweet['sentiment'] == 'neutral']
 		# percentage of neutral tweets
 		#print("Neutral tweets percentage: {} % ".format(100 * len(netweets) / len(tweets)))
-
 		row = 0
 
 		# #     print(api.tweetObj)
@@ -378,7 +379,6 @@ def get_cve(tweet):
 
 def getNegativeTweets(profile_name, no_of_tweets):
 		ntweets = fetchtweets(profile_name)['ntweets'][:no_of_tweets]
-		
 		negativeDictionary = {}
 		for index, tweet in enumerate(ntweets):
 				#print(tweet['gvndate'].strftime('%b %m %Y'))
