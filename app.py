@@ -159,7 +159,8 @@ def get_num_from_str(x):
 @app.route('/tweets/<profile_name>')
 @ssl_required
 @login_required
-def show_all_tweets(profile_name):
+def show_all_tweets(profile_name=''):
+#def show_all_tweets(profile_name):
 	fetch_and_save_tweets(profile_name)
 	saved_profiles = db.session.query(profiles).all()
 	profile = None
