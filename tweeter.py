@@ -454,9 +454,9 @@ def get_tweet_score(text, score):
 		
 		else:
 				if float(score) >= -0.05:
-						tweet_score = str(score) + " [critical]  SS"
+						tweet_score = str(score) + " [critical] "
 				elif float(score) <= -0.05 or float(score) >= -0.1:
-						tweet_score = str(score) + " [high] SS"
+						tweet_score = str(score) + " [high] "
 
 		return tweet_score
 
