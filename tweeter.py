@@ -258,7 +258,7 @@ def fetchtweets(profile_name='Inj3ct0r'):
 		# # array of TAGs used to filter tweets
 		query = ["#cybersecurity", "cybersecurity", "#infosec", "infosec", "#security", "security", "#cybercrime",
 						"cybercrime", "#cyberwar", "cyberwar", "#0dayexploits", "0dayexploits", "#0daytoday", "0daytoday",
-						"#vulnerability", "vulnerability"]
+						"#vulnerability", "vulnerability", "#struts", "struts", "#struts2", "struts2", "#wordpress", "wordpress", "#Apache", "Apache"]
 
 		# # array of critical words for negative score (-0.2)
 		critical_keyword = ["Authenticate", "inject", "vodafone", "remote", "rce"]
