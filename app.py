@@ -59,7 +59,7 @@ def check_on_all_tables():
 def fetch_and_save_tweets(profile_name):
 	check_on_all_tables()
 	negativeDictionary = getNegativeTweets(profile_name, no_of_tweets=70)
-	
+	print (negativeDictionary,"negativeDictionary")
 	profile = get_profile(profile_name)
 	if profile:
 		for key, value in negativeDictionary.items():
@@ -72,6 +72,7 @@ def fetch_and_save_tweets(profile_name):
 				tweet_cve = get_cve(decoded_tweet)
 				tweet_score = get_tweet_score(decoded_tweet, tweet_score)
 				exists = db.session.query(Tweets).filter_by(tweet=decoded_tweet).first() is not None
+				print (exists, "exists")
 				if exists == False:
 					formatted_tweet = {
 						'tweet': decoded_tweet ,
@@ -127,8 +128,10 @@ def show_all():
 					ascore = str(scoring(cve(vscore), vname))
 					if not ascore.startswith('Low'):
 						temp = allSource[i]
-						vuln = vulns(name = str(get_link(vname, temp)), date = (key + ' ' + str(now.year)), my_cve = cve(vname), score = ascore, source = temp)
-						db.session.add(vuln)
+						vuln_object = vulns(name = str(get_link(vname, temp)), date = (key + ' ' + str(now.year)), my_cve = cve(vname), score = ascore, source = temp)
+						exists = db.session.query(vulns).filter_by(name = str(get_link(vname, temp)), date = (key + ' ' + str(now.year)), my_cve = cve(vname), score = ascore, source = temp).first() is not None
+						if exists == False:
+							db.session.add(vuln_object)
 		i += 1
 
 	db.session.commit()
@@ -138,7 +141,7 @@ def show_all():
 @app.route('/login', methods=['GET','POST'])
 @ssl_required
 def do_admin_login():
-	if request.form.get('password', None) == 'pass' and request.form.get('username', None) == 'admin':
+	if request.form.get('password', None) == '$ocial@dashboard' and request.form.get('username', None) == 'admin':
 		session['logged_in'] = True
 		#session.permanent = True
 		#app.permanent_session_lifetime = timedelta(minutes=30)
@@ -164,15 +167,20 @@ def show_all_tweets(profile_name=''):
 	fetch_and_save_tweets(profile_name)
 	saved_profiles = db.session.query(profiles).all()
 	profile = None
+	print (saved_profiles,"saved_profiles")
+	print (profile_name, "profile_name")
 	if profile_name:
 		profile = get_profile(profile_name)
+		print (profile, "profile")
 	elif saved_profiles:
 		profile = random.choice(saved_profiles)
+		print (profile, "profile, under saved_profiles")
 	if profile:
 		saved_tweets = db.session.query(Tweets).filter_by(profile_id=profile.id)
+		print (saved_tweets, "saved_tweets", profile.id)
 	else:
 		saved_tweets = []
-
+	print (saved_tweets[0].__dict__, "dekho")
 	return render_template('show_all_tweets.html', tweets=saved_tweets, profile=profile, profiles=saved_profiles)
 	
 @app.route('/profiles', methods=['GET', 'POST'])
@@ -226,6 +234,7 @@ def manage_profile(profile_id):
 @app.route('/logout')
 @ssl_required
 @login_required
+
 def logout():
 	session['logged_in'] = False
 	return redirect(url_for('show_all'))
