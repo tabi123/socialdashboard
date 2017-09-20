@@ -179,7 +179,6 @@ def show_all_tweets(profile_name='Inj3ctor'):
 		print (saved_tweets, "saved_tweets", profile.id)
 	else:
 		saved_tweets = []
-	print (saved_tweets[0].__dict__, "dekho")
 	return render_template('show_all_tweets.html', tweets=saved_tweets, profile=profile, profiles=saved_profiles)
 	
 @app.route('/profiles', methods=['GET', 'POST'])
